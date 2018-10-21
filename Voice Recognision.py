@@ -9,20 +9,21 @@ import re
 engine = pyttsx3.init()
 r = sr.Recognizer()
 regex = re.compile('computer .')
-command="place holder"
 Done = False
 
 def GetVoice():
     # Record Audio
     with sr.Microphone() as source:
         print("calabrating microphone")
-        r.adjust_for_ambient_noise(source, duration=5)
+        r.adjust_for_ambient_noise(source, duration=3)
         print("Say something!")
         global audio
         audio = r.listen(source)
 
     try:
-        print("you said :" + r.recognize_google(audio))
+        print("you said: " + r.recognize_google(audio))
+        global command
+        command=r.recognize_google(audio)
         return
     except sr.UnknownValueError:  
         print("I couldnt understand you")
@@ -32,17 +33,17 @@ def GetVoice():
         return
 
 while Done != True:
+    command="*"
     GetVoice()
-    command=r.recognize_google(audio)
     if 'computer' in command:
-        if command == 'computer shutdown':
+        if 'shutdown' in command:
             engine.say("Shutting down")
             engine.setProperty('rate',120)  #120 words per minute
             engine.setProperty('volume',0.9) 
             engine.runAndWait()
             Done = True
-        elif command == 'computer James':
-            engine.say("daddyeeeeeeeeee")
+        elif 'Dad' in command:
+            engine.say("daddy")
             engine.setProperty('rate',120)  #120 words per minute
             engine.setProperty('volume',0.9) 
             engine.runAndWait()
