@@ -1,14 +1,15 @@
 #listen to the voice of person using it
 
-#imports speech and tts
+#imports: speech recognition, text to speech, url magic, media streamer
 import speech_recognition as sr
 import pyttsx3
-import re
+import pafy
+#import vlc
+
 
 #sets defult values
 engine = pyttsx3.init()
 r = sr.Recognizer()
-regex = re.compile('computer .')
 Done = False
 
 def GetVoice():
@@ -44,6 +45,12 @@ while Done != True:
             Done = True
         elif 'Dad' in command:
             engine.say("daddy")
+            engine.setProperty('rate',120)  #120 words per minute
+            engine.setProperty('volume',0.9) 
+            engine.runAndWait()
+            Done = False
+        elif 'one' in command:
+            engine.say("you are a faggot")
             engine.setProperty('rate',120)  #120 words per minute
             engine.setProperty('volume',0.9) 
             engine.runAndWait()
