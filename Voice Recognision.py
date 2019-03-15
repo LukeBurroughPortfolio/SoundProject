@@ -49,12 +49,6 @@ while Done != True:
             engine.setProperty('volume',0.9) 
             engine.runAndWait()
             Done = False
-        elif 'one' in command:
-            engine.say("you are a faggot")
-            engine.setProperty('rate',120)  #120 words per minute
-            engine.setProperty('volume',0.9) 
-            engine.runAndWait()
-            Done = False
         else:
             Done = False
     else:
